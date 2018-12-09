@@ -1,0 +1,23 @@
+---
+- name: "Install Tool"
+  yum:
+    name: "{{ yum }}"
+    state: latest
+
+- name: "Create Minecraft Directory"
+  file:
+    path: "{{ mc_path }}"
+    state: directory
+    mode: 0770
+
+- name: "Get Server Jar"
+  get_url:
+    url: "{{ getserver }}"
+    dest: "{{ mc_path }}/server.jar"
+    mode: 0770
+
+- name: "Set Firewalld Port"
+  firewalld:
+    port: "{{ server_port }}"
+    permanent: true
+    state: enabled

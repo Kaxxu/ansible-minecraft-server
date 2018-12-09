@@ -1,0 +1,26 @@
+---
+- name: "Set EULA"
+  template:
+    src: eula.j2
+    dest: "{{ mc_path }}/eula.txt"
+    mode: 0770
+
+- name: "Set Server Properties"
+  template:
+    src: server.properties.j2
+    dest: "{{ mc_path }}/server.properties"
+    mode: 0770
+
+- name: "Set starting script"
+  template:
+    src: run-server.j2
+    dest: "{{ mc_path }}/run-server.sh"
+    mode: +x
+
+- name: "Run Minecraft Server"
+  shell: "{{ mc_path }}/run-server.sh"
+  async: 45
+  poll: 0
+
+- debug:
+    msg: "All Done - Connect in game to {{ hostvars['master']['ansible_default_ipv4']['address'] }}:{{ server_port }} :)"
