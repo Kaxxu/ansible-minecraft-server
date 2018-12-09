@@ -8,3 +8,7 @@ Use the command below to run the playbook:
 ```
 ansible-playbook -i hosts.yml deploy-mc-server.yml
 ```
+
+### TODO
+- [x] CentOS
+- [ ] Ubuntu
