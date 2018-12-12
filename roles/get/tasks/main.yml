@@ -1,0 +1,28 @@
+---
+- name: "Get MC version"
+  uri:
+    url: "{{ apiurl }}"
+  register: apicall
+
+- name: "Show Version"
+  debug:
+    msg: "{{ apicall.json.latest.snapshot }}"
+
+- name: "Set Version"
+  set_fact:
+    version: "{{ apicall.json.latest.snapshot }}"
+
+- name: "Get Server link"
+  uri:
+    url: "{{ apicall.json.versions.0.url }}"
+  register: serverurl
+
+- name: "Get Server url"
+  debug:
+    msg: "{{ serverurl.json.downloads.server.url }}"
+
+- name: "Get Server"
+  get_url:
+    url: "{{ serverurl.json.downloads.server.url }}"
+    dest: "{{ mc_path }}/server-{{ version }}.jar"
+    mode: 0777
