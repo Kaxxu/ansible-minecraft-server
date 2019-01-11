@@ -12,18 +12,18 @@
     state: enabled
   when: ansible_distribution == 'CentOS'
 
+- name: "Install CentOS Tools"
+  yum:
+    name: java
+    state: latest
+  when: ansible_distribution == 'CentOS'
+
 - name: "Set Firewall Port in Ubuntu"
   ufw:
     rule: allow
     port: "{{ server_port }}"
     proto: tcp
   when: ansible_distribution == 'Ubuntu'
-
-- name: "Install CentOS Tools"
-  yum:
-    name: java
-    state: latest
-  when: ansible_distribution == 'CentOS'
 
 - name: "Install Ubuntu Tools"
   apt:

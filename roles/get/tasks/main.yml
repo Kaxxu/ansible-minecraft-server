@@ -17,7 +17,7 @@
     url: "{{ apicall.json.versions.0.url }}"
   register: serverurl
 
-- name: "Get Server url"
+- name: "Show Server url"
   debug:
     msg: "{{ serverurl.json.downloads.server.url }}"
 
