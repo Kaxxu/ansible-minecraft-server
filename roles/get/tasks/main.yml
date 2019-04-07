@@ -26,3 +26,4 @@
     url: "{{ serverurl.json.downloads.server.url }}"
     dest: "{{ mc_path }}/server-{{ version }}.jar"
     mode: 0777
+
