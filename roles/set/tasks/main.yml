@@ -11,6 +11,7 @@
     port: "{{ server_port }}/tcp"
     state: enabled
   when: ansible_distribution == 'CentOS'
+  ignore_errors: true
 
 - name: "Install CentOS Tools"
   yum:
@@ -24,6 +25,7 @@
     port: "{{ server_port }}"
     proto: tcp
   when: ansible_distribution == 'Ubuntu'
+  ignore_errors: true
 
 - name: "Install Ubuntu Tools"
   apt:
@@ -31,4 +33,3 @@
     update_cache: true
     state: latest
   when: ansible_distribution == 'Ubuntu'
-
