@@ -13,9 +13,9 @@
   when: ansible_distribution == 'CentOS'
   ignore_errors: true
 
-- name: "Install CentOS Tools"
+- name: "Install Java - CentOS"
   yum:
-    name: java
+    name: java-21-openjdk.x86_64
     state: latest
   when: ansible_distribution == 'CentOS'
 
@@ -27,7 +27,7 @@
   when: ansible_distribution == 'Ubuntu'
   ignore_errors: true
 
-- name: "Install Ubuntu Tools"
+- name: "Install java - Ubuntu"
   apt:
     name: default-jre
     update_cache: true

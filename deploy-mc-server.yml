@@ -3,5 +3,4 @@
   roles:
     - set
     - get
-    - run
-
+    - { role: run, become: true }

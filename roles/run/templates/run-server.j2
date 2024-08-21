@@ -2,4 +2,4 @@
 
 cd {{ mc_path }}
 
-java -Xms{{ java_ram_min }}M -Xmx{{ java_ram_max }}M -jar server-{{ version }}.jar > /dev/null 2>&1 &
+java -Xms{{ java_ram_min }}M -Xmx{{ java_ram_max }}M -jar server-{{ version.msg }}.jar > /dev/null 2>&1 &

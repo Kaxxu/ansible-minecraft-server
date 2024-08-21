@@ -1,0 +1,15 @@
+[Unit]
+Description=Minecraft Server
+After=network.target
+
+[Service]
+User=root
+Group=root
+WorkingDirectory={{ ansible_user_dir }}/minecraft
+Environment="JAVA_OPTS=-Xmx{{ java_ram_max }}M -Xms{{ java_ram_min }}M"
+ExecStart=/usr/bin/java $JAVA_OPTS -jar server-{{ version.msg }}.jar > /dev/null 2>&1 &
+ExecStop=/bin/kill -SIGINT $MAINPID
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

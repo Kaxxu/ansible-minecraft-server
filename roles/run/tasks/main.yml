@@ -17,10 +17,27 @@
     dest: "{{ mc_path }}/run-server.sh"
     mode: +x
 
-- name: "Run Minecraft Server"
-  shell: "{{ mc_path }}/run-server.sh"
-  async: 45
-  poll: 0
+- name: "Set starting script"
+  template:
+    src: minecraft.j2
+    dest: "/etc/systemd/system/minecraft.service"
+    mode: '0755'
+
+- name: Reload systemd after unit file modification
+  systemd:
+    name: minecraft.service
+    daemon_reload: yes
+
+- name: Start minecraft
+  systemd:
+    name: minecraft.service
+    state: started
+    enabled: true
+
+#- name: "Run Minecraft Server"
+#  shell: "{{ mc_path }}/run-server.sh"
+#  async: 45
+#  poll: 0
 
 - debug:
     msg: "All Done - Connect in game to {{ hostvars['master']['ansible_default_ipv4']['address'] }}:{{ server_port }} :)"
