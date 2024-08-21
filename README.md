@@ -14,19 +14,21 @@ ansible-playbook -i hosts.yml deploy-mc-server.yml
 minecraft-server-ansible
 ├── LICENSE
 ├── README.md
+├── ansible.cfg
 ├── deploy-mc-server.yml
 ├── hosts.yml
 └── roles
     ├── get
-    │   └── tasks
-    │       └── main.yml
+    │   └── tasks
+    │       └── main.yml
     ├── run
-    │   ├── tasks
-    │   │   └── main.yml
-    │   └── templates
-    │       ├── eula.j2
-    │       ├── run-server.j2
-    │       └── server.properties.j2
+    │   ├── tasks
+    │   │   └── main.yml
+    │   └── templates
+    │       ├── eula.j2
+    │       ├── minecraft.j2
+    │       ├── run-server.j2
+    │       └── server.properties.j2
     └── set
         └── tasks
             └── main.yml
